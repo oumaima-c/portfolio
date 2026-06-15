@@ -1,13 +1,11 @@
-import { FaLocationArrow } from "react-icons/fa6";
-
 import { socialMedia } from "@/data";
-import MagicButton from "./MagicButton";
+import ContactForm from "./ContactForm";
 
 const Footer = () => {
   return (
     <footer className="w-full pt-20 pb-10" id="contact">
-      {/* background grid */}
-      <div className="w-full absolute left-0 -bottom-72 min-h-96">
+      {/* background grid - ADDED pointer-events-none HERE */}
+      <div className="w-full absolute left-0 -bottom-72 min-h-96 pointer-events-none">
         <img
           src="/footer-grid.svg"
           alt="grid"
@@ -15,29 +13,18 @@ const Footer = () => {
         />
       </div>
 
-      <div className="flex flex-col items-center">
+      {/* ADDED relative z-10 HERE to bring the form above the grid */}
+      <div className="flex flex-col items-center relative z-10">
         <h1 className="heading lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
+          Ready to take <span className="text-[#00b5c8]">your</span> digital
           presence to the next level?
         </h1>
-        {/* CHANGED: "me/I" to "us/we" to match agency branding */}
         <p className="text-white-200 md:mt-10 my-5 text-center">
           Reach out to us today and let&apos;s discuss how we can help you
           achieve your business goals.
         </p>
         
-        {/* IMPROVED: Added subject and body parameters to the mailto link */}
-        <a 
-          href="mailto:weadvance001@gmail.com?subject=Project%20Inquiry%20-%20WeAdvance&body=Hi%20WeAdvance%20team%2C%0A%0AI%20am%20interested%20in%20discussing%20a%20project%20about...%0A%0ABest%2C%0A[Your%20Name]" 
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <MagicButton
-            title="Let's get in touch"
-            icon={<FaLocationArrow />}
-            position="right"
-          />
-        </a>
+        <ContactForm />
       </div>
       
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
@@ -46,11 +33,10 @@ const Footer = () => {
         </p>
 
         <div className="flex items-center md:gap-3 gap-6">
-          {/* IMPROVED: Added <a> tags so social icons actually link to your profiles */}
           {socialMedia.map((info) => (
             <a
               key={info.id}
-              href={info.url} // Make sure your socialMedia data array has a "url" property!
+              href={info.url} 
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
